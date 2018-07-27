@@ -1,16 +1,19 @@
 version: '2'
 
 services:
-#  jenkins:
-#    build: 
-#      context: .
-
   jenkins:
-    image: jenkins/jenkins:lts
+    build: 
+      context: .
+
+#  jenkins:
+#    image: jenkins/jenkins:lts
     ports:
       - "8080:8080"
       - "50000:50000"
+    restart: unless-stopped      
     environment:
       - JAVA_OPTS:-Djava.awt.headless=true
     volumes:
       - ./jenkins-home:/var/jenkins_home:Z    
+      - /var/run/docker.sock:/var/run/docker.sock
+    container_name: jenkins-docker      
