@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+#  jenkins:
+#    build: 
+#      context: .
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    environment:
+      - JAVA_OPTS:-Djava.awt.headless=true
+    volumes:
+      - ./jenkins-home:/var/jenkins_home:Z    
